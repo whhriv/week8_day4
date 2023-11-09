@@ -5,6 +5,13 @@ class Items {
     private _name: string
     private _price: number
     private _description: string
+
+    constructor(name:string, price:number, description:string){
+        this._itemId = uuidv4()
+        this._name = name
+        this._price = price
+        this._description = description
+    }
     
 
 
@@ -32,12 +39,7 @@ class Items {
     public set itemId(value: string) {
         this._itemId = value;
     }
-    constructor(){
-        this._itemId = uuidv4()
-        this._name = Items.name
-        this._price = this.price
-        this._description = description
-    }
+
     }
 
 
@@ -74,26 +76,26 @@ class User {
 
     ){}
 
-    function addToCart(item:Items):void{
+    addToCart(item:Items):void{
         this._cart.push(item);
     }
-    function removeFromCart(item:Items): void{
+    removeFromCart(itemToRemove:Items): void{
         this._cart = this.cart.filter(item => item.itemId != itemToRemove.itemId)
     }
-    function removeQuantityFromCart(itemToRemove:Items,quantity:number): void {
+    removeQuantityFromCart(itemToRemove:Items,quantity:number): void {
         for (let i=0; i<quantity; i++){
             let index = this.cart.findIndex(item => item.itemId === itemToRemove.itemId)
             this.cart.splice(index,1)
             } 
         }
-    function getCartTotal():number {
+    getCartTotal():number {
             let total = 0;
             for (let item of this.cart){
                 total += item.price
             }
             return total
         }
-    function printCart():void {
+    printCart():void {
         console.log(`Here is what is in your cart, ${this.name}:`)
         for (let item of this.cart) {
             console.log(`${item.name}: $${item.price}`)
@@ -120,6 +122,14 @@ class Shop {
 
     
 }
+const shop = new Shop()
+const user = new User(uuidv4(), 'William Reeder', 37)
+user.addToCart(shop.items[0])
+user.addToCart(shop.items[0])
+user.addToCart(shop.items[1])
+user.addToCart(shop.items[1])
+user.addToCart(shop.items[2])
+user.addToCart(shop.items[2])
+user.addToCart(shop.items[2])
 
-addToCart(user, item)
-
+user.printCart()
