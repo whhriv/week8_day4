@@ -96,11 +96,15 @@ class User {
             return total
         }
     printCart():void {
-        console.log(`Here is what is in your cart, ${this.name}:`)
+        console.log(`\n    ${this.name}'s CART\n`)
         for (let item of this.cart) {
-            console.log(`${item.name}: $${item.price}`)
+            console.log('- - - - - - - - - - - - - - - - - - - - - - ')
+        console.log(`ItemID: ${item.itemId}`)
+        console.log(`Name: ${item.name}`)
+        console.log(`Price: ${item.price}`)
+        console.log(`Description: ${item.description}`)
         }
-        console.log(`total: ${this.getCartTotal()}`)
+        console.log(`\nTotal: ${this.getCartTotal()}\n`)
 }
 
 
@@ -132,4 +136,24 @@ user.addToCart(shop.items[2])
 user.addToCart(shop.items[2])
 user.addToCart(shop.items[2])
 
+console.log("\n\n=============================================")
+console.log("| | | | | | | | | | | | | | | | | | | | | | |")
+console.log("=============================================")
+
+user.printCart()
+
+user.removeFromCart(shop.items[1])
+
+
+console.log("\n\n=============================================")
+console.log("| | | | | | | | | | | | | | | | | | | | | | |")
+console.log("=============================================")
+
+user.printCart()
+
+console.log("\n\n=============================================")
+console.log("| | | | | | | | | | | | | | | | | | | | | | |")
+console.log("=============================================")
+
+user.removeQuantityFromCart(shop.items[2], 2)
 user.printCart()
